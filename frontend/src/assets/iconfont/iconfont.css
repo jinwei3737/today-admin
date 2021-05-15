@@ -1,0 +1,34 @@
+@font-face {font-family: "iconfont";
+    src: url('iconfont.eot?t=1618469559670'); /* IE9 */
+    src: url('iconfont.eot?t=1618469559670#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARoAAsAAAAACMAAAAQcAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqFJIQ0ATYCJAMMCwgABCAFhG0HORt9B1FUTXJkH4dxDLkMhRaLKULgxFD+x3j4d+z1viQlAFkJqEEByqqyquqZrRo7BWzkNOvpP99v6lGiUJeLUKMqBomTETrXr+2RpHPTP5c/7p02ttB8QDnNMfxTF2AcUJTuiWtpARZIgBpzy+GMV+d6AvWGRUC2iyoagEShdQvEpUbVCyQxrVJSGGqF6pyxRbwgVJue0iXAc/fz8U9cSEiqMq3v3kXhAMj56fymCX1WmajDRuH1ZwYziYxFQCHOc62HUD+6CFUvSQXlmdWKkPoK/P+Py5XF1fofHkkQ1TRpI8bPxhI/nU1uKGsC/l7zTq5+NWrwZ/fwnS9Z5IEygwgJl8eN6evhh4Adf7v28O3SVMscr5C9d+tv3vVEJy1QI8ikdgzw62ZvQBCrp3XDhiV+S8mNdxN3R64PcF90LQHglvUATFzXZENsNq9yjoayUnh3FE+xeKAsJJvXUccAbMg7MzSL5zGAIWuCM8KzFyAYgi/0yyIzbWu9EBysJsiwjPkgKbwbNnbzvHuo2QAHEz08wiwWD7wLCTnMw2xNpbduNToid696NFcjs48EYmtO+C5c60HwK5ombQ2x3m2+fdsdNOCWxYC/pcQWHXIHKfKTqmH6L5i3DT+LEq3Nvxe0SmAsFit22thvbiZa0bP4NsMLADSK0+ocFIEKxztzp34bipyKpC4dU+JKGnoqBajESZuRfi3OCXGKy7kHKMtEYrGISJEnNOTtOn69dqosvyg+PcDfM1kRT8Xtun68zxwHMkAOGZ23w+Wxy7Rv0mgymggPMk+4R4dH163MUItPwJxE2qNLrifc1l2KcZEJSSGsg49Qwo56btTV5TF0hSSUyS4jcjvSZuOxT1/bU0ImoDskI1h/l3M2+2MJ+n1BajvJ9FvoPAQ2KhhVkpxvyWzx9Lq0p9YUQXHgpwa0jO2ek05511oCegBU+LwgJ7lxSz6Wdb/Edzy8/XS922n5vwQv4McSdC+4K3wB9XKBWonavB+AV7OkyAJNl4vINbmqLXuMuCWAzcq89mJo96S9vQsIzaGW5QEkNYYgqzWJLvhFqNJgCarVWoN6C4onN+jAQkWpw7xpCEKrrZA0+wRZq8vogn8MVbq9hWqtgUK9/eiYs8F0aLAtlurlqAHYNwpq+hkjbRg4zCuso1SD+l42KnCpTRRr1gRgbFRMMlFMGSm2jwHm4ao4jqMhzTIGWIQ2o/R6BppYRkv1c1FqjjOlRUfTeWeK6mcMALOFRenFoQyA+owCafRjGNF2ZQ6Wen8disogvV5sCaLE2oTCMtPUDsWKElMDXSw11kKcyzZmw6nE4XBoEI3FMICKkJmi16MMyJTfSovSjxNF3SJskiYal6PrSqPGlxuubxXU0/rlSJGjqL0b7DWO1JiZgntGTwEA') format('woff2'),
+    url('iconfont.woff?t=1618469559670') format('woff'),
+    url('iconfont.ttf?t=1618469559670') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('iconfont.svg?t=1618469559670#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.icon-role:before {
+    content: "\e610";
+}
+
+.icon-permission:before {
+    content: "\e656";
+}
