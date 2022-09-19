@@ -8,7 +8,7 @@ use App\Admin\Models\Permissions;
 use App\Admin\Models\Roles;
 use App\Admin\Transformers\User\Format;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
