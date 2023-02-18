@@ -3,6 +3,7 @@
 use App\Admin\Controllers\AuthController;
 use App\Admin\Controllers\PermissionsController;
 use App\Admin\Controllers\RolesController;
+use App\Admin\Controllers\TestController;
 use App\Admin\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ Route::match(['GET', 'POST'], '/login', [AuthController::class, 'login']);
 Route::group(["middleware" => ['auth:sanctum']], function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('info', [AuthController::class, 'info']);
+
+    Route::get('order/add', [TestController::class, 'createdOrder']);
 
     Route::get('user/view_data', [UsersController::class, 'addOrEditViewData']);
     Route::get('role/view_data', [RolesController::class, 'addOrEditViewData']);
