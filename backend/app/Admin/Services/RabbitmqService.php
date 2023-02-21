@@ -17,12 +17,7 @@ class RabbitmqService
             'password' => env('RABBITMQ_PASSWORD', 'guest'),
             'vhost'    => env('RABBITMQ_VHOST', '/'),
         ];
-        try {
-            return new AMQPStreamConnection($config['host'], $config['port'], $config['user'], $config['password'], $config['vhost']);
-
-        }catch (Exception $exception){
-            dd($exception->getMessage());
-        }
+        return new AMQPStreamConnection($config['host'], $config['port'], $config['user'], $config['password'], $config['vhost']);
     }
 
     /**

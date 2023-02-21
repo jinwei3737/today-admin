@@ -3,9 +3,9 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Models\Order;
-use App\Admin\Services\RabbitmqService;
 use App\Http\Controllers\Controller;
 use App\Jobs\TestQueue;
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -22,4 +22,12 @@ class TestController extends Controller
         return apiReturn($order);
     }
 
+    public function finishOrder(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:order,id',
+        ]);
+
+        dd($request->id);
+    }
 }

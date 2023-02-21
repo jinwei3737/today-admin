@@ -21,6 +21,7 @@ Route::group(["middleware" => ['auth:sanctum']], function () {
     Route::get('info', [AuthController::class, 'info']);
 
     Route::get('order/add', [TestController::class, 'createdOrder']);
+    Route::get('order/finish', [TestController::class, 'finishOrder']);
 
     Route::get('user/view_data', [UsersController::class, 'addOrEditViewData']);
     Route::get('role/view_data', [RolesController::class, 'addOrEditViewData']);
