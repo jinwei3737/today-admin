@@ -25,6 +25,6 @@ class OrderCreate
      */
     public function handle(OrderEvent $event)
     {
-        RabbitmqService::push('order', 'exc_order', 'pus_order', $event->order->jsonSerialize());
+        //$event->order
     }
 }

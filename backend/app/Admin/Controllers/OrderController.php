@@ -16,7 +16,8 @@ class OrderController extends Controller
             'status' => 0,
         ]);
 
-        event(new OrderEvent($order));
+        $orderJob = new \App\Admin\Jobs\Order($order->toArray());
+        $this->dispatch($orderJob);
 
         return apiReturn($order->toArray());
     }

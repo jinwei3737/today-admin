@@ -59,7 +59,7 @@ class RabbitmqService
         $channel->queue_bind($queue, $exchange, $routing_key);
 
         //消息类，设置delivery_mode为DELIVERY_MODE_PERSISTENT，表示将消息持久化
-        $message = new AMQPMessage(json_encode($messageBody), [
+        $message = new AMQPMessage($messageBody, [
             'content_type'  => 'text/plain',
             'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
         ]);
@@ -86,9 +86,6 @@ class RabbitmqService
      */
     public static function pop($queue, $callback)
     {
-
-        print_r('消费者中心' . PHP_EOL);
-
         $connection = self::getConnect();
 
         //构建消息通道
@@ -99,16 +96,13 @@ class RabbitmqService
 
         if (!$message) return false;
 
-        //消息主题返回给回调函数
+        //消息内容返回给回调函数处理
         $res = $callback($message->body);
 
         if ($res) {
-            print_r('ack验证' . PHP_EOL);
             //ack验证，如果消费失败了，从新获取一次数据再次消费
             $channel->basic_ack($message->getDeliveryTag());
         }
-
-        print_r('ack消费完成' . PHP_EOL);
 
         $channel->close();
         $connection->close();
