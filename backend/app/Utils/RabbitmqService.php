@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Admin\Services;
+namespace App\Utils;
 
-use Exception;
+use App\Admin\Models\Order;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -36,40 +36,39 @@ class RabbitmqService
         //构建通道（mq的数据存储与获取是通过通道进行数据传输的）
         $channel = $connection->channel();
 
-        //监听数据,成功
+        // 开启confirm模式，保证消息100%投递成功（补偿机制）
+        // 投递消息后，RabbitMQ会异步返回是否投递成功（confirm模式不可以和事务模式同时存在）
+        $channel->confirm_select();
         $channel->set_ack_handler(function (AMQPMessage $message) {
-            dump("数据写入成功");
+            // 投递成功
+            $order = json_decode($message->body,true);
+            Order::where('id', $order['id'])->update(['is_send' => 1]);
         });
-
-        //监听数据,失败
         $channel->set_nack_handler(function (AMQPMessage $message) {
-            dump("数据写入失败");
+            // 投递失败
+            self::push('order', 'exc_order', 'pus_order', $message);
         });
 
-        //声明一个队列
-        $channel->queue_declare($queue, false, true, false, false);
-
-        //指定交换机，若是路由的名称不匹配不会把数据放入队列中
+        //声明交换机，将第四个参数设置为true，表示将交换机持久化
         $channel->exchange_declare($exchange, 'direct', false, true, false);
+
+        //声明队列名称，将第三个参数设置为true，表示将队列持久化
+        $channel->queue_declare($queue, false, true, false, false);
 
         //队列和交换器绑定/绑定队列和类型
         $channel->queue_bind($queue, $exchange, $routing_key);
 
-        $config = [
+        //消息类，设置delivery_mode为DELIVERY_MODE_PERSISTENT，表示将消息持久化
+        $message = new AMQPMessage(json_encode($messageBody), [
             'content_type'  => 'text/plain',
             'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
-        ];
-
-        //实例化消息推送类
-        $message = new AMQPMessage($messageBody, $config);
+        ]);
 
         //消息推送到路由名称为$exchange的队列当中
         $channel->basic_publish($message, $exchange, $routing_key);
 
         //监听写入
         $channel->wait_for_pending_acks();
-
-        dump('生产者已操作');
 
         //关闭消息推送资源
         $channel->close();
