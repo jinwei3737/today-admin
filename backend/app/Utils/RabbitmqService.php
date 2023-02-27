@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use App\Admin\Models\Order;
+use Exception;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -26,7 +27,7 @@ class RabbitmqService
      * @param $messageBody .消息体
      * @param string $exchange .交换机名称
      * @param string $routing_key .设置路由
-     * @throws \Exception
+     * @throws Exception
      */
     public static function push($queue, $exchange, $routing_key, $messageBody)
     {
@@ -46,7 +47,7 @@ class RabbitmqService
         });
         $channel->set_nack_handler(function (AMQPMessage $message) {
             // 投递失败
-            self::push('order', 'exc_order', 'pus_order', $message);
+            throw new Exception('消息投递失败');
         });
 
         //声明交换机，将第四个参数设置为true，表示将交换机持久化
@@ -82,7 +83,7 @@ class RabbitmqService
      * @param $queue
      * @param $callback
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public static function pop($queue, $callback)
     {
@@ -99,10 +100,12 @@ class RabbitmqService
         //消息内容返回给回调函数处理
         $res = $callback($message->body);
 
-        if ($res) {
+        if (!$res) {
             //ack验证，如果消费失败了，从新获取一次数据再次消费
+            print_r('消息消费失败：'. $message->body. PHP_EOL);
             $channel->basic_ack($message->getDeliveryTag());
         }
+        print_r('消息消费成功：'. $message->body. PHP_EOL);
 
         $channel->close();
         $connection->close();
