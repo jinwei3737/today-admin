@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Admin\Events;
+namespace App\Order\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -19,7 +18,7 @@ class Order
      *
      * @return void
      */
-    public function __construct(\App\Admin\Models\Order $order)
+    public function __construct(\App\Order\Models\Order $order)
     {
         $this->order = $order;
     }

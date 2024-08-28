@@ -2,7 +2,7 @@
 
 namespace App\Utils;
 
-use App\Admin\Models\Order;
+use App\Order\Models\Order;
 use Exception;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;

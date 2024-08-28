@@ -40,7 +40,7 @@ class Order implements ShouldQueue
 //            $res   = \App\Admin\Models\Order::where('id', $order['id'])->update([
 //                'status' => 1
 //            ]);
-            $res = \App\Admin\Models\Order::where('id', $order['id'])->increment('status', 1);
+            $res = \App\Order\Models\Order::where('id', $order['id'])->increment('status', 1);
 
 //            $key = $this->orderKey . ':' . date('Y-m-d H:i:s');
 //            $product = app('redis')->set($key, $input);

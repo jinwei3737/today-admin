@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Admin\Listeners;
+namespace App\Order\Listeners;
 
-use App\Admin\Events\Order as OrderEvent;
-use App\Utils\RabbitmqService;
+use App\Order\Events\Order as OrderEvent;
 
 class OrderCreate
 {
@@ -20,7 +19,7 @@ class OrderCreate
     /**
      * Handle the event.
      *
-     * @param  \App\Admin\Events\Order  $event
+     * @param  \App\Order\Events\Order  $event
      * @return void
      */
     public function handle(OrderEvent $event)
