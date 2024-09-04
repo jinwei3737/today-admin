@@ -18,7 +18,7 @@ class Permission
     {
         $user = $request->user();
 
-        $uri = substr($request->path(),3);
+        $uri = substr($request->path(),9);
 
         $permit_uri = $user->getAllPermissions()->map(function ($permission){
             return $permission->uri;
